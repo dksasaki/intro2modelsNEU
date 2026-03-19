@@ -7,16 +7,25 @@ platforms = ["linux-64"]
 version = "0.1.0"
 
 [tasks]
+# Run this if you have the Manifest.toml (reproducible install):
+#   pixi run instantiate-kernel
 instantiate-kernel = """julia -e 'import Pkg; ENV["CONDA_JL_CONDA_EXE"] = joinpath(ENV["CONDA_PREFIX"], "condabin", "conda"); Pkg.instantiate()'"""
 
+# Run these only the first time, if you do NOT have a Manifest.toml:
+#   pixi run install-kernel
+#   pixi run install-oceananigans
+#   pixi run install-cairomakie
 install-kernel = """julia -e 'import Pkg; ENV["CONDA_JL_CONDA_EXE"] = joinpath(ENV["CONDA_PREFIX"], "condabin", "conda"); Pkg.add("IJulia"); Pkg.build("IJulia")'"""
 install-oceananigans = """julia -e 'import Pkg; Pkg.add("Oceananigans")'"""
 install-cairomakie = """julia -e 'import Pkg; Pkg.add("CairoMakie")'"""
 
 [dependencies]
+# conda packages managed by pixi
 conda = ">=26.1.1,<27"
 julia = ">=1.12.5,<1.13"
 jupyterlab = ">=4.5.6,<5"
 
 [activation]
-env = { JULIA_PROJECT = "$PIXI_PROJECT_ROOT"  }
+# JULIA_PROJECT tells Julia where to find Project.toml and Manifest.toml
+# $PIXI_PROJECT_ROOT always points to the directory containing pixi.toml
+env = { JULIA_PROJECT = "$PIXI_PROJECT_ROOT" }
