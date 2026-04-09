@@ -18,6 +18,8 @@ instantiate-kernel = """julia -e 'import Pkg; ENV["CONDA_JL_CONDA_EXE"] = joinpa
 install-kernel = """julia -e 'import Pkg; ENV["CONDA_JL_CONDA_EXE"] = joinpath(ENV["CONDA_PREFIX"], "condabin", "conda"); Pkg.add("IJulia"); Pkg.build("IJulia")'"""
 install-oceananigans = """julia -e 'import Pkg; Pkg.add("Oceananigans")'"""
 install-cairomakie = """julia -e 'import Pkg; Pkg.add("CairoMakie")'"""
+install-seawaterpoly="""julia -e 'import Pkg; Pkg.add("SeawaterPolynomials")'"""
+install-cuda="""julia -e 'import Pkg; Pkg.add("CUDA")'"""
 
 [dependencies]
 # conda packages managed by pixi
