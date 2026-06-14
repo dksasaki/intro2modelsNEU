@@ -15,11 +15,15 @@ instantiate-kernel = """julia -e 'import Pkg; ENV["CONDA_JL_CONDA_EXE"] = joinpa
 #   pixi run install-kernel
 #   pixi run install-oceananigans
 #   pixi run install-cairomakie
+#   pixi run install-seawaterpoly
+#   pixi run install-oceanbiome
 install-kernel = """julia -e 'import Pkg; ENV["CONDA_JL_CONDA_EXE"] = joinpath(ENV["CONDA_PREFIX"], "condabin", "conda"); Pkg.add("IJulia"); Pkg.build("IJulia")'"""
 install-oceananigans = """julia -e 'import Pkg; Pkg.add("Oceananigans")'"""
 install-cairomakie = """julia -e 'import Pkg; Pkg.add("CairoMakie")'"""
 install-seawaterpoly="""julia -e 'import Pkg; Pkg.add("SeawaterPolynomials")'"""
 install-cuda="""julia -e 'import Pkg; Pkg.add("CUDA")'"""
+install-oceanbiome="""julia -e 'import Pkg; Pkg.add("OceanBioME")'"""
+
 
 [dependencies]
 # conda packages managed by pixi
